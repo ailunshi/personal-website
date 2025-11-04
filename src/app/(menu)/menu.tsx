@@ -1,13 +1,22 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import icons from "./socials";
 
-
 function Menu() {
     const [showMenu, setShowMenu] = useState(false);
     const pathname = usePathname();
+
+    // Locks scrolling on underlying page when mobile menu is open
+    useEffect(() => {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      if (showMenu && isMobile) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    }, [showMenu]);
     
     function handleMenu() {
       setShowMenu((menuSetting) => !menuSetting);
@@ -30,7 +39,7 @@ function Menu() {
 
     function MobileMenu() {
       return (
-        <div className="fixed inset-0 h-screen flex flex-col justify-center text-center raleway gap-10 text-[16px] z-50 bg-[var(--color-purple-haze)]">
+        <div className="fixed inset-0 z-50 flex flex-col justify-center text-center raleway gap-10 text-[16px] bg-[var(--color-purple-haze)]">
           <button onClick={handleMenu}>
                 X
           </button>
@@ -46,8 +55,8 @@ function Menu() {
     return (
       <header className="flex flex-row justify-between gap-20">
         
-        {showMenu && (
-          <>
+          {showMenu && (
+            <>
             <div className="hidden md:block relative z-50">
             {<DeskTopMenu />}
             </div>
@@ -55,8 +64,9 @@ function Menu() {
             <div className="block md:hidden">
               {<MobileMenu />}
             </div>
-          </>
-        )}
+            </>
+            
+          )}
 
         <button
             onClick={ handleMenu }

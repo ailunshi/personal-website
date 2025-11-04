@@ -144,7 +144,7 @@ export default function RootLayout({
       
 
       <body className="theme-bg flex flex-col">
-        <main className="flex-grow w-full pl-10 pr-10 pt-5 relative">
+        <main className="w-full pl-10 pr-10 mt-5 relative">
             {children}
         </main>
 
