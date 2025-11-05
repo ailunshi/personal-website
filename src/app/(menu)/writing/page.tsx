@@ -3,27 +3,27 @@ import Work from "./work";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Writing",
-    description: "Books and other works written by Ailun Shi"
+  title: "Writing",
+  description: "Books and other works written by Ailun Shi",
 };
 
 export default function Writing() {
-    const workElements = writingData.map(writing => {
-        return (
-            <Work
-                key={writing.id}
-                title={writing.title}
-                genre={writing.genre}
-                description={writing.description}
-                notes={writing.notes}
-                link={writing.link}
-            />
-        )
-    })
-
+  const workElements = writingData.map((writing) => {
     return (
-        <div className="flex flex-col justify-items-center items-center gap-10">
-            {workElements}
-        </div>
-    )
+      <Work
+        key={writing.id}
+        title={writing.title}
+        genre={writing.genre}
+        description={writing.description}
+        notes={writing.notes}
+        link={writing.link}
+      />
+    );
+  });
+
+  return (
+    <div className="flex flex-col justify-items-center items-center gap-10">
+      {workElements}
+    </div>
+  );
 }

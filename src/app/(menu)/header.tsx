@@ -1,21 +1,17 @@
-"use client"
+"use client";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    const titles: Record<string, string> = {
-        "/": "home",
-        "/about": "about",
-        "/contact": "contact",
-        "/writing": "writing",
-    };
+  const titles: Record<string, string> = {
+    "/": "home",
+    "/about": "about",
+    "/contact": "contact",
+    "/writing": "writing",
+  };
 
-    const title = titles[pathname]
+  const title = titles[pathname];
 
-    return (
-        <>
-            {title}
-        </>
-    )
+  return <>{title}</>;
 }

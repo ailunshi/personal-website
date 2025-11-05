@@ -1,82 +1,125 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import icons from "./socials";
 
 function Menu() {
-    const [showMenu, setShowMenu] = useState(false);
-    const pathname = usePathname();
+  const [showMenu, setShowMenu] = useState(false);
+  const pathname = usePathname();
 
-    // Locks scrolling on underlying page when mobile menu is open
-    useEffect(() => {
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
-      if (showMenu && isMobile) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "";
-      }
-    }, [showMenu]);
-    
-    function handleMenu() {
-      setShowMenu((menuSetting) => !menuSetting);
+  // Locks scrolling on underlying page when mobile menu is open
+  useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (showMenu && isMobile) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
+  }, [showMenu]);
 
-    function getHeaderStyle(path: string) {
-      return (pathname == path) ? "text-moon-yellow font-bold" : "text-white font-bold"
-    }
+  function handleMenu() {
+    setShowMenu((menuSetting) => !menuSetting);
+  }
 
-    function DeskTopMenu() {
-      return (
-        <div className="flex flex-row raleway gap-10 text-[16px] z-50">
-          <Link onClick={ handleMenu } href="/" className={ `${getHeaderStyle("/")} link `}>HOME</Link>
-          <Link onClick={ handleMenu } href="/writing" className={ getHeaderStyle("/writing") }>WRITING</Link>
-          <Link onClick={ handleMenu } href="/about" className={ getHeaderStyle("/about") }>ABOUT</Link>
-          <Link onClick={ handleMenu } href="/contact" className={ getHeaderStyle("/contact") }>CONTACT</Link>
-        </div>
-      )
-    }
+  function getHeaderStyle(path: string) {
+    return pathname == path
+      ? "text-moon-yellow font-bold"
+      : "text-white font-bold";
+  }
 
-    function MobileMenu() {
-      return (
-        <div className="fixed inset-0 z-50 flex flex-col justify-center text-center raleway gap-10 text-[16px] bg-[var(--color-purple-haze)]">
-          <button onClick={handleMenu}>
-                X
-          </button>
-          <Link onClick={ handleMenu } href="/" className={ `${getHeaderStyle("/")} link `}>HOME</Link>
-          <Link onClick={ handleMenu} href="/writing" className={ getHeaderStyle("/writing") }>WRITING</Link>
-          <Link onClick={ handleMenu} href="/about" className={ getHeaderStyle("/about") }>ABOUT</Link>
-          <Link onClick={ handleMenu } href="/contact" className={ getHeaderStyle("/contact") }>CONTACT</Link>
-          <p>{ icons.instagram } <a href="https://www.instagram.com/ailunshii/" target="_blank">@ailunshii</a></p>
-        </div>
-      )
-    }
-
+  function DeskTopMenu() {
     return (
-      <header className="flex flex-row justify-between gap-20">
-        
-          {showMenu && (
-            <>
-            <div className="hidden md:block relative z-50">
-            {<DeskTopMenu />}
-            </div>
-            
-            <div className="block md:hidden">
-              {<MobileMenu />}
-            </div>
-            </>
-            
-          )}
+      <div className="flex flex-row raleway gap-10 text-[16px] z-50">
+        <Link
+          onClick={handleMenu}
+          href="/"
+          className={`${getHeaderStyle("/")} link `}
+        >
+          HOME
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/writing"
+          className={getHeaderStyle("/writing")}
+        >
+          WRITING
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/about"
+          className={getHeaderStyle("/about")}
+        >
+          ABOUT
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/contact"
+          className={getHeaderStyle("/contact")}
+        >
+          CONTACT
+        </Link>
+      </div>
+    );
+  }
 
-        <button
-            onClick={ handleMenu }
-          >
-            { showMenu ? <p>&gt;</p> : <p>&lt;</p> }
-        </button>
+  function MobileMenu() {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col justify-center text-center raleway gap-10 text-[16px] bg-[var(--color-purple-haze)]">
+        <button onClick={handleMenu}>X</button>
+        <Link
+          onClick={handleMenu}
+          href="/"
+          className={`${getHeaderStyle("/")} link `}
+        >
+          HOME
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/writing"
+          className={getHeaderStyle("/writing")}
+        >
+          WRITING
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/about"
+          className={getHeaderStyle("/about")}
+        >
+          ABOUT
+        </Link>
+        <Link
+          onClick={handleMenu}
+          href="/contact"
+          className={getHeaderStyle("/contact")}
+        >
+          CONTACT
+        </Link>
+        <p>
+          {icons.instagram}{" "}
+          <a href="https://www.instagram.com/ailunshii/" target="_blank">
+            @ailunshii
+          </a>
+        </p>
+      </div>
+    );
+  }
 
-      </header>
+  return (
+    <header className="flex flex-row justify-between gap-20">
+      {showMenu && (
+        <>
+          <div className="hidden md:block relative z-50">{<DeskTopMenu />}</div>
 
-    )
+          <div className="block md:hidden">{<MobileMenu />}</div>
+        </>
+      )}
+
+      <button onClick={handleMenu}>
+        {showMenu ? <p>&gt;</p> : <p>&lt;</p>}
+      </button>
+    </header>
+  );
 }
 
 export default Menu;

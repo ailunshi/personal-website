@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "author",
     "ya fantasy",
     "adult fantasy",
-    "books"
+    "books",
   ],
   openGraph: {
     siteName: "Ailun Shi \u2014 YA/Adult Fantasy Novelist",
@@ -33,73 +33,72 @@ export const metadata: Metadata = {
         url: "/DSC01700.jpg",
         width: 1200,
         height: 630,
-      }
-    ]
+      },
+    ],
   },
   icons: {
     icon: [
       {
         url: "/icon.png",
-        type: "image/png"
+        type: "image/png",
       },
       {
         url: "/icon.png",
         sizes: "16x16",
-        type: "image/png"
+        type: "image/png",
       },
       {
         url: "/icon.png",
         sizes: "32x32",
-        type: "image/png"
-      }
+        type: "image/png",
+      },
     ],
     apple: [
       {
         url: "/icon.png",
         sizes: "57x57",
-        type: "image/png"
+        type: "image/png",
       },
       {
         url: "/icon.png",
         sizes: "60x60",
-        type: "image/png"
-      }
-    ]
-  }
-
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
   initialScale: 1,
   width: "device-width",
   themeColor: "#8666A9",
-}
+};
 
 const raleway = Raleway({
   display: "swap",
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-raleway",
-  style: ["normal", "italic"]
-})
+  style: ["normal", "italic"],
+});
 
 const alata = Alata({
   display: "swap",
   weight: "400",
   variable: "--font-alata",
-})
+});
 
 const cherish = Cherish({
   display: "swap",
   weight: "400",
   variable: "--font-cherish",
-})
+});
 
 const zhimangxing = Zhi_Mang_Xing({
   display: "swap",
   weight: "400",
   variable: "--font-zhimangxing",
-})
+});
 
 export default function RootLayout({
   children,
@@ -107,11 +106,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
+    <html
       lang="en"
       className={`${alata.variable} ${cherish.variable} ${raleway.variable} ${zhimangxing.variable}`}
     >
-      
       <Script
         id="person-schema"
         type="application/ld+json"
@@ -120,33 +118,34 @@ export default function RootLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            "name": "Ailun Shi",
-            "alternateName": "Shi Ailun",
-            "url": "https://shiailun.com",
-            "image": "https://shiailun.com/DSC01700.jpg",
-            "jobTitle": "YA/Adult Fantasy Novelist",
-            "description": "Ailun Shi is a science fiction and fantasy novelist currently based in the Bay Area.",
-            "sameAs": [
+            name: "Ailun Shi",
+            alternateName: "Shi Ailun",
+            url: "https://shiailun.com",
+            image: "https://shiailun.com/DSC01700.jpg",
+            jobTitle: "YA/Adult Fantasy Novelist",
+            description:
+              "Ailun Shi is a science fiction and fantasy novelist currently based in the Bay Area.",
+            sameAs: [
               "https://instagram.com/ailunshii/",
               "https://ailun.substack.com/",
               "https://x.com/ailunshi",
             ],
-            "knowsAbout": [
+            knowsAbout: [
               "Fantasy literature",
               "Science fiction",
               "Adult fantasy novels",
               "Young adult fantasy novels",
               "Creative writing",
-              "Bel e Kyre"
-            ]
-          })
+              "Bel e Kyre",
+            ],
+          }),
         }}
       />
-      
+
       <body className="theme-bg flex flex-col">
         <main className="w-full pl-10 pr-10 relative">
-            {children}
-            <Analytics />
+          {children}
+          <Analytics />
         </main>
       </body>
     </html>
