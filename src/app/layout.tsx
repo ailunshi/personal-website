@@ -143,20 +143,11 @@ export default function RootLayout({
         }}
       />
       
-
       <body className="theme-bg flex flex-col">
-        <main className="w-full pl-10 pr-10 mt-5 relative">
+        <main className="w-full pl-10 pr-10 relative">
             {children}
             <Analytics />
         </main>
-
-        {/* Footer Content*/}
-        <footer className="p-5">
-          <p className="text-right raleway text-[12px] italic">
-            Designed with Figma, built with NextJS and Tailwind CSS, deployed with Vercel
-          </p>
-        </footer>
-        
       </body>
     </html>
   );
