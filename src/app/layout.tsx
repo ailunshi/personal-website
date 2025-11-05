@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Alata, Raleway, Cherish, Zhi_Mang_Xing } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: {
@@ -146,6 +147,7 @@ export default function RootLayout({
       <body className="theme-bg flex flex-col">
         <main className="w-full pl-10 pr-10 mt-5 relative">
             {children}
+            <Analytics />
         </main>
 
         {/* Footer Content*/}
